@@ -1,17 +1,16 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 import Input from "./Input";
+import { useState, useEffect } from "react";
 
-export default function CreateLoan({ setLoading }) {
+export default function LoanDeposit({ setLoading }) {
   const [type, setType] = useState("single");
+  const [customerInfo, setCustomerInfo] = useState([]);
 
   const [formData, setFormData] = useState({
     cusId: "",
-    dueDate: "",
-    loanAmount: "",
-    intrestAmount: "",
-    intrestRate: "",
-    numberOfEmis: "",
+    loanId: "",
+    desc: "",
+    credit: 0,
   });
 
   function handleChange(e) {
@@ -20,7 +19,20 @@ export default function CreateLoan({ setLoading }) {
     });
   }
 
+  function resetForm() {
+    setFormData({
+      cusId: "",
+      loanId: "",
+      desc: "",
+      credit: 0,
+    });
+  }
+  useEffect(() => {
+    resetForm();
+  }, [type]);
+
   const [list, setList] = useState([]);
+
   useEffect(() => {
     const ApiCall = async () => {
       setLoading(true);
@@ -48,27 +60,42 @@ export default function CreateLoan({ setLoading }) {
     ApiCall();
   }, []);
 
-  function resetForm() {
-    setFormData({
-      cusId: "",
-      dueDate: "",
-      loanAmount: "",
-      intrestAmount: "",
-      intrestRate: "",
-      numberOfEmis: "",
-    });
-  }
-  useEffect(() => {
-    resetForm();
-  }, [type]);
+  const fetchCustomer = async (customerId) => {
+    setLoading(true);
+    const token = localStorage.getItem("token");
+    const url =
+      "https://getcore-backend.onrender.com/viewCustumer/" + formData.cusId;
 
-  async function ApiCall() {
-    const url = `https://getcore-backend.onrender.com/${
-      type == "single" ? "createSingleLoan" : "createEmiLoan"
-    }/${formData.cusId}`;
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log(response.data.data);
+
+      setCustomerInfo(response.data.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (formData.cusId) {
+      fetchCustomer();
+    }
+  }, [formData.cusId]);
+
+  async function depositLoan() {
+    console.log(formData);
+    setLoading(true);
+    const url = `http://localhost:3000/${
+      type === "single" ? "depositSingleLoan" : "depositEmiLoan"
+    }/${formData.loanId}`;
 
     const token = localStorage.getItem("token");
-    setLoading(true);
 
     try {
       const response = await axios.post(url, formData, {
@@ -77,13 +104,13 @@ export default function CreateLoan({ setLoading }) {
         },
       });
 
-      alert("Loan Added Succesfully");
-      console.log(response.data);
+      setLoading(false);
+      alert("Amount Deposit Success");
     } catch (err) {
-      alert("Loan Not Add Succesfully");
+      alert(err.response.data.message);
       console.log(err);
     }
-    resetForm();
+
     setLoading(false);
   }
 
@@ -91,7 +118,7 @@ export default function CreateLoan({ setLoading }) {
     <div
       className={`w-full md:w-[50%] mx-auto px-[5%] py-5 flex flex-col gap-4 overflow-auto`}
     >
-      <h1 className="text-xl md:text-2xl  font-semibold">Create New Loan</h1>
+      <h1 className="text-xl md:text-2xl  font-semibold">Deposit Payment</h1>
 
       <label className="font-medium">Loan Type</label>
 
@@ -124,6 +151,7 @@ export default function CreateLoan({ setLoading }) {
           <label className="block text-md font-semibold text-gray-600 ">
             Customer ID
           </label>
+
           <select
             value={formData.cusId}
             name="cusId"
@@ -143,53 +171,49 @@ export default function CreateLoan({ setLoading }) {
           </select>
         </div>
 
-        <Input
-          name="dueDate"
-          placeholder="Due Date"
-          className={`${type != "single" ? "hidden" : ""}`}
-          type="date"
-          value={formData.dueDate}
-          onChange={handleChange}
-        />
+        <div className="flex flex-col gap-0">
+          <label className="block text-md font-semibold text-gray-600 ">
+            Loan ID
+          </label>
+
+          <select
+            value={formData.loanId}
+            name="loanId"
+            onChange={handleChange}
+            className="border-[1px] border-gray-200 focus:outline-none rounded-lg w-full h-12 px-2 "
+          >
+            <option value="" className="w-[100%]">
+              Select Loan
+            </option>
+
+            {formData.cusId &&
+              (type === "single"
+                ? customerInfo.singleLoanStack
+                : customerInfo.emiLoanStack
+              )?.map((item) => {
+                return <option value={item}>{item}</option>;
+              })}
+          </select>
+        </div>
 
         <Input
-          name="loanAmount"
-          placeholder="Loan Amount"
+          name="credit"
+          placeholder="Amount"
           type="text"
-          value={formData.loanAmount}
+          value={formData.credit}
           onChange={handleChange}
         />
-
         <Input
-          name="intrestAmount"
-          placeholder="Intrest Amount"
-          className={`${type != "single" ? "hidden" : ""}`}
+          name="desc"
+          placeholder="Description"
           type="text"
-          value={formData.intrestAmount}
-          onChange={handleChange}
-        />
-
-        <Input
-          name="intrestRate"
-          placeholder="Intrest Rate"
-          className={`${type != "emi" ? "hidden" : ""}`}
-          type="text"
-          value={formData.intrestRate}
-          onChange={handleChange}
-        />
-
-        <Input
-          name="numberOfEmis"
-          placeholder="Number of EMI"
-          type="text"
-          className={`${type != "emi" ? "hidden" : ""}`}
-          value={formData.numberOfEmis}
+          value={formData.desc}
           onChange={handleChange}
         />
       </div>
 
       <button
-        onClick={ApiCall}
+        onClick={depositLoan}
         className="min-h-12 w-full cursor-pointer w-full rounded-lg focus:outline-none bg-gradient-to-br from-[#A480F0] to-[#35A8E7] text-white text-lg font-medium hover:brightness-110"
       >
         Create Loan

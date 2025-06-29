@@ -104,7 +104,9 @@ function CreateCustomer({ setLoading }) {
   };
 
   return (
-    <div className={`w-full md:w-[80%] overflow-y-auto`}>
+    <div
+      className={`w-full md:w-[80%] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']`}
+    >
       <div className="text-xl md:text-2xl text-center text-black mb-6 mt-5 font-bold">
         <h1>Create a new customer profile</h1>
       </div>

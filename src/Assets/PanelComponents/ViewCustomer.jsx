@@ -47,6 +47,8 @@ export default function ViewCustomer({ setLoading = { setLoading } }) {
         mobile: newData.mobile + " " + newData.email ?? "",
       };
 
+      console.log(newData);
+
       setCustomerInfo({ ...newFiles, ...customerData });
       setLoading(false);
     } catch (err) {

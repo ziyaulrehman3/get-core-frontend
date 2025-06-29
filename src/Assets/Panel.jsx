@@ -8,6 +8,10 @@ import ViewCustomer from "./PanelComponents/ViewCustomer";
 import CreateLoan from "./PanelComponents/CreateLoan";
 
 const ViewLoan = lazy(() => import("./PanelComponents/ViewLoan"));
+const LoanDeposit = lazy(() => import("./PanelComponents/LoanDeposit"));
+const RecentTransaction = lazy(() =>
+  import("./PanelComponents/RecentTransaction")
+);
 
 export default function Panel() {
   const [activePage, setActivePage] = useState("dashboard");
@@ -33,6 +37,23 @@ export default function Panel() {
         return (
           <Suspense fallback={<div>Loading....</div>}>
             <ViewLoan setLoading={setLoading} setActivePage={setActivePage} />
+          </Suspense>
+        );
+
+      case "payment-deposit":
+        return (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LoanDeposit
+              setLoading={setLoading}
+              setActivePage={setActivePage}
+            />
+          </Suspense>
+        );
+
+      case "recent-payments":
+        return (
+          <Suspense fallback={<div>Loading...</div>}>
+            <RecentTransaction setLoading={setLoading} />
           </Suspense>
         );
     }

@@ -72,7 +72,7 @@ export default function LoanDetails({
         setActivePage("dashboard");
       } catch (err) {
         console.log(err);
-        alert("Loan not Delete");
+        alert(err.response.data.message);
       }
 
       setLoading(false);
