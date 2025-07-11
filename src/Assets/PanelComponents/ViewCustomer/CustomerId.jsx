@@ -45,12 +45,14 @@ export default function CustomerId({ fetchCustomer, setLoading }) {
           onChange={(e) => setCurrentOption(e.target.value)}
           className="border-[1px] border-gray-200 focus:outline-none rounded-lg w-full md:w-80 h-12 px-2 "
         >
-          <option value="" className="w-[100%]">
-            Select Customer
-          </option>
+          {!currentOption && (
+            <option value="" className="w-[100%]">
+              Select Customer
+            </option>
+          )}
           {list.map((item) => {
             return (
-              <option value={String(item._id)}>
+              <option key={item._id} value={String(item._id)}>
                 {item.name} ({item._id})
               </option>
             );
@@ -58,7 +60,11 @@ export default function CustomerId({ fetchCustomer, setLoading }) {
         </select>
 
         <button
-          onClick={() => fetchCustomer(currentOption)}
+          onClick={() => {
+            if (currentOption) {
+              fetchCustomer(currentOption);
+            }
+          }}
           className="h-12 w-full md:w-32 rounded-lg focus:outline-none bg-gradient-to-b from-[#A480F0] to-[#35A8E7] text-white text-lg font-medium hover:brightness-110"
         >
           Fetch

@@ -22,7 +22,13 @@ export default function Panel() {
 
     switch (activePage) {
       case "dashboard":
-        return <Dashboard className={classData} setLoading={setLoading} />;
+        return (
+          <Dashboard
+            className={classData}
+            setLoading={setLoading}
+            setActivePage={setActivePage}
+          />
+        );
 
       case "create-customer":
         return <CreateCustomer setLoading={setLoading} />;
@@ -58,6 +64,7 @@ export default function Panel() {
         );
     }
   };
+
   return (
     <div className="flex flex-row w-full h-lvh overflow-hidden relative">
       <SideBar
