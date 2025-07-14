@@ -12,7 +12,7 @@ export default function RecentTransaction({ setLoading }) {
 
       try {
         const response = await axios.get(
-          "http://localhost:3000/RecentTransaction",
+          "https://getcore-backend.onrender.com/RecentTransaction",
           {
             headers: {
               Authorization: `Bearer ${token}`,

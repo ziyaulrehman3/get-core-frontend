@@ -44,11 +44,14 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
       setLoading(true);
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:3000/Dashboard", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://getcore-backend.onrender.com/Dashboard",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setChartData(response.data.data);
 
         const response2 = await axios.get(

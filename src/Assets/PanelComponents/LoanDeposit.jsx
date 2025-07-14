@@ -91,7 +91,7 @@ export default function LoanDeposit({ setLoading }) {
   async function depositLoan() {
     console.log(formData);
     setLoading(true);
-    const url = `http://localhost:3000/${
+    const url = `https://getcore-backend.onrender.com/${
       type === "single" ? "depositSingleLoan" : "depositEmiLoan"
     }/${formData.loanId}`;
 
