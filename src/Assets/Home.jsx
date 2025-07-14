@@ -7,6 +7,7 @@ import Comp3 from "./HomeComponents/Comp3";
 import Comp4 from "./HomeComponents/Comp4";
 import Comp5 from "./HomeComponents/Comp5";
 import Contact from "./HomeComponents/Contact";
+import FullComponent from "./HomeComponents/FullComponent";
 
 import Footer from "./HomeComponents/Footer";
 
@@ -21,6 +22,7 @@ export default function Home() {
       <Comp3 />
       <Comp4 />
       <Comp5 />
+      <FullComponent />
       <Contact />
       <Footer />
       <FaCircleArrowUp

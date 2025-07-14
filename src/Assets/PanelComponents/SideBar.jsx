@@ -79,6 +79,7 @@ const SideBar = ({ activePage, setActivePage }) => {
                 <button
                   onClick={() => {
                     setActivePage(item.id);
+                    toggleSidebar();
                     // Close sidebar on mobile after navigation
                   }}
                   className={`btn-primary ${
