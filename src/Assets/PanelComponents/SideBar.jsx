@@ -70,7 +70,7 @@ const SideBar = ({ activePage, setActivePage }) => {
       >
         {/* Sidebar - always visible on md screens and above */}
 
-        <h1 className=" font-bold underline lg:no-underline flex gap-2">
+        <h1 className=" font-bold mx-auto py-2 flex gap-2">
           <img src="./Images/Logo.png" alt="" className="w-10 aspect-square" />
           <img src="./Images/LogoText.png" alt="" className="h-10" />
         </h1>
