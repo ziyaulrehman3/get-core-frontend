@@ -17,8 +17,8 @@ export default function Header() {
         } transform transition-transform duration-1000 z-20 gap-4 lg:gap-8 lg:gap-0 lg:absolute top-0 left-0 px-2 lg:px-[10%] mx-auto h-lvh lg:h-14 items-center flex flex-col lg:flex-row lg:justify-between shadow-[0px_0px_20px_4px] shadow-gray-200 lg:shadow-none`}
       >
         <h1 className=" font-bold underline lg:no-underline flex gap-2">
-          <img src="./Images/Logo.png" alt="" className="w-12 aspect-square" />
-          <img src="./Images/LogoText.png" alt="" className="h-12" />
+          <img src="./Images/Logo.png" alt="" className="w-10 aspect-square" />
+          <img src="./Images/LogoText.png" alt="" className="h-10" />
         </h1>
 
         <div className="flex w-full lg:w-auto text-center flex-col lg:flex-row gap-2 lg:gap-4 lg:gap-8 text-xl lg:text-lg font-semibold">
