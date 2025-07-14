@@ -14,7 +14,9 @@ const SideBar = ({ activePage, setActivePage }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => {
-    setIsOpen(!isOpen);
+    if (window.innerWidth < 1024) {
+      setIsOpen(!isOpen); // Only toggle sidebar on small screens
+    }
   };
 
   const menu = [
