@@ -70,9 +70,10 @@ const SideBar = ({ activePage, setActivePage }) => {
       >
         {/* Sidebar - always visible on md screens and above */}
 
-        <h2 className="text-2xl font-bold text-black py-4 w-[80%] mx-auto mt-8">
-          Get Core
-        </h2>
+        <h1 className=" font-bold underline lg:no-underline flex gap-2">
+          <img src="./Images/Logo.png" alt="" className="w-10 aspect-square" />
+          <img src="./Images/LogoText.png" alt="" className="h-10" />
+        </h1>
 
         <nav className="sm:mt-6">
           <ul>
