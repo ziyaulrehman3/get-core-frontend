@@ -16,7 +16,7 @@ export default function Header() {
             : "translate-x-0"
         } transform transition-transform duration-1000 z-20 gap-4 lg:gap-8 lg:gap-0 lg:absolute top-0 left-0 px-2 lg:px-[10%] mx-auto h-lvh lg:h-14 items-center flex flex-col lg:flex-row lg:justify-between shadow-[0px_0px_20px_4px] shadow-gray-200 lg:shadow-none`}
       >
-        <h1 className=" font-bold underline lg:no-underline flex gap-2">
+        <h1 className=" font-bold mx-auto flex gap-2">
           <img src="./Images/Logo.png" alt="" className="w-10 aspect-square" />
           <img src="./Images/LogoText.png" alt="" className="h-10" />
         </h1>
