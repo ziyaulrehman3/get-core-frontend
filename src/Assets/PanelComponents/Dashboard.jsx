@@ -109,15 +109,15 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
       className={`w-full md:w-[80%] grid grid-cols-3 md:grid-cols-6 gap-2 md:grid-rows-4 p-4 overflow-y-auto`}
     >
       <div className=" rounded-xl font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
-        <h1>{"Overall Customers:"}</h1>
+        <h1 className="text-xm lg:text-xl">{"Overall Customers:"}</h1>
         <h1 className="text-7xl ">{customerList.length}</h1>
       </div>
       <div className="rounded-xl font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
-        <h1>{"Active EMI Loan:"}</h1>
+        <h1 className="text-xm lg:text-xl">{"Active EMI Loan:"}</h1>
         <h1 className="text-7xl ">{chartData.emiActiveLoan}</h1>
       </div>
       <div className="rounded-xl font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
-        <h1>{"Active Single Loan:"}</h1>
+        <h1 className="text-xm lg:text-xl">{"Active Single Loan:"}</h1>
         <h1 className="text-7xl ">{chartData.singleActiveLoan}</h1>
       </div>
 
