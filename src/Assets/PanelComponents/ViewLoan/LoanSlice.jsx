@@ -20,15 +20,18 @@ export default function LoanSlice({ item, index, setLoanDetailsFlag }) {
       </div>{" "}
       <div className="md:col-span-2 px-2">
         <p>Amount: {item.loanAmount}</p>
-        <p>Balance: {item.balance}</p>
+        <p>
+          {item.loanType === "single"
+            ? "Balance:" + item.balance
+            : "Due:" + item.dueAmount}
+        </p>
       </div>{" "}
       <div className="md:col-span-2 px-2">
         <p>Issued: {new Date(item.loanDate).toLocaleDateString("en-GB")}</p>
         <p>
-          Due:
           {item.loanType === "single"
-            ? new Date(item.dueDate).toLocaleDateString("en-GB")
-            : item.numberOfEmis - item.numberOfDepositEmis}
+            ? "Due:" + new Date(item.dueDate).toLocaleDateString("en-GB")
+            : ""}
         </p>
       </div>
       <button

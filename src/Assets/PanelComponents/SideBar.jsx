@@ -41,16 +41,16 @@ const SideBar = ({ activePage, setActivePage }) => {
       label: "View Loan",
       icon: <FaFileInvoiceDollar size={20} />,
     },
-    {
-      id: "payment-deposit",
-      label: "Payment Deposit",
-      icon: <FaMoneyBillWave size={20} />,
-    },
-    {
-      id: "recent-payments",
-      label: "Recent Payments",
-      icon: <FaHistory size={20} />,
-    },
+    // {
+    //   id: "payment-deposit",
+    //   label: "Payment Deposit",
+    //   icon: <FaMoneyBillWave size={20} />,
+    // },
+    // {
+    //   id: "recent-payments",
+    //   label: "Recent Payments",
+    //   icon: <FaHistory size={20} />,
+    // },
   ];
 
   return (

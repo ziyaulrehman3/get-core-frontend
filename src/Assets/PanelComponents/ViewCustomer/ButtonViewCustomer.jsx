@@ -113,9 +113,20 @@ export default function ButtonViewCustomer({ value, icon, name, onEdit }) {
           <h2 className="text-[#4F7396]">
             {materialList[name]?.hide ? (
               value ? (
-                <a href={value} target="__blank" rel="noopener noreferrer">
-                  View Document ↗
-                </a>
+                <div className="flex gap-2">
+                  <a href={value} target="__blank" rel="noopener noreferrer">
+                    View Document ↗
+                  </a>
+                  <a
+                    href={
+                      "https://res.cloudinary.com/dwqyely65/image/upload/fl_attachment/" +
+                      value.split("/upload/")[1]
+                    }
+                    download
+                  >
+                    Download ↓
+                  </a>
+                </div>
               ) : (
                 "No Document"
               )

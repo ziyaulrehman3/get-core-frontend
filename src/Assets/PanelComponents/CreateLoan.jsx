@@ -4,14 +4,17 @@ import Input from "./Input";
 
 export default function CreateLoan({ setLoading }) {
   const [type, setType] = useState("single");
+  const [mode, setMode] = useState("");
 
   const [formData, setFormData] = useState({
     cusId: "",
-    dueDate: "",
     loanAmount: "",
     intrestAmount: "",
     intrestRate: "",
-    numberOfEmis: "",
+    totalEmis: "",
+    firstEmiDate: "",
+    mode: "",
+    dueDate: "",
   });
 
   function handleChange(e) {
@@ -21,20 +24,18 @@ export default function CreateLoan({ setLoading }) {
   }
 
   const [list, setList] = useState([]);
+
   useEffect(() => {
     const ApiCall = async () => {
       setLoading(true);
       const token = localStorage.getItem("token");
 
       try {
-        const response = await axios.get(
-          "https://getcore-backend.onrender.com/custumerList",
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
+        const response = await axios.get("http://localhost:3000/custumerList", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
 
         console.log(response.data);
         setList(response.data.data);
@@ -51,11 +52,12 @@ export default function CreateLoan({ setLoading }) {
   function resetForm() {
     setFormData({
       cusId: "",
-      dueDate: "",
       loanAmount: "",
       intrestAmount: "",
       intrestRate: "",
-      numberOfEmis: "",
+      totalEmis: "",
+      firstEmiDate: "",
+      mode: "",
     });
   }
   useEffect(() => {
@@ -63,7 +65,7 @@ export default function CreateLoan({ setLoading }) {
   }, [type]);
 
   async function ApiCall() {
-    const url = `https://getcore-backend.onrender.com/${
+    const url = `http://localhost:3000/${
       type == "single" ? "createSingleLoan" : "createEmiLoan"
     }/${formData.cusId}`;
 
@@ -71,11 +73,15 @@ export default function CreateLoan({ setLoading }) {
     setLoading(true);
 
     try {
-      const response = await axios.post(url, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        url,
+        { ...formData, mode: mode },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       alert("Loan Added Succesfully");
       console.log(response.data);
@@ -124,6 +130,7 @@ export default function CreateLoan({ setLoading }) {
           <label className="block text-md font-semibold text-gray-600 ">
             Customer ID
           </label>
+
           <select
             value={formData.cusId}
             name="cusId"
@@ -143,29 +150,49 @@ export default function CreateLoan({ setLoading }) {
           </select>
         </div>
 
+        <div
+          className={`flex flex-row gap-6 md:gap-20 ${
+            type != "emi" ? "hidden" : ""
+          }`}
+        >
+          <label className="font-semibold text-md">
+            <input
+              type="radio"
+              className="mr-2"
+              value="weekly"
+              checked={mode === "weekly"}
+              onClick={(e) => setMode(e.target.value)}
+            />
+            Weekly
+          </label>
+
+          <label className="font-semibold text-md">
+            <input
+              type="radio"
+              className="mr-2"
+              value="monthly"
+              checked={mode === "monthly"}
+              onClick={(e) => setMode(e.target.value)}
+            />
+            Monthly
+          </label>
+        </div>
+
+        <Input
+          name="firstEmiDate"
+          placeholder="First Emi Date"
+          className={`${type != "emi" ? "hidden" : ""}`}
+          type="date"
+          value={formData.firstEmiDate}
+          onChange={handleChange}
+        />
+
         <Input
           name="dueDate"
           placeholder="Due Date"
-          className={`${type != "single" ? "hidden" : ""}`}
+          className={`${type == "emi" ? "hidden" : ""}`}
           type="date"
           value={formData.dueDate}
-          onChange={handleChange}
-        />
-
-        <Input
-          name="loanAmount"
-          placeholder="Loan Amount"
-          type="text"
-          value={formData.loanAmount}
-          onChange={handleChange}
-        />
-
-        <Input
-          name="intrestAmount"
-          placeholder="Intrest Amount"
-          className={`${type != "single" ? "hidden" : ""}`}
-          type="text"
-          value={formData.intrestAmount}
           onChange={handleChange}
         />
 
@@ -177,13 +204,27 @@ export default function CreateLoan({ setLoading }) {
           value={formData.intrestRate}
           onChange={handleChange}
         />
-
         <Input
-          name="numberOfEmis"
-          placeholder="Number of EMI"
+          name="loanAmount"
+          placeholder="Loan Amount"
+          type="text"
+          value={formData.loanAmount}
+          onChange={handleChange}
+        />
+        <Input
+          name="totalEmis"
+          placeholder="Total Emis"
           type="text"
           className={`${type != "emi" ? "hidden" : ""}`}
-          value={formData.numberOfEmis}
+          value={formData.totalEmis}
+          onChange={handleChange}
+        />
+        <Input
+          name="intrestAmount"
+          placeholder="Intrest Amount"
+          className={`${type != "single" ? "hidden" : ""}`}
+          type="text"
+          value={formData.intrestAmount}
           onChange={handleChange}
         />
       </div>

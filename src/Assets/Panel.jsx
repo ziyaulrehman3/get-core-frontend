@@ -46,22 +46,22 @@ export default function Panel() {
           </Suspense>
         );
 
-      case "payment-deposit":
-        return (
-          <Suspense fallback={<div>Loading...</div>}>
-            <LoanDeposit
-              setLoading={setLoading}
-              setActivePage={setActivePage}
-            />
-          </Suspense>
-        );
+      // case "payment-deposit":
+      //   return (
+      //     <Suspense fallback={<div>Loading...</div>}>
+      //       <LoanDeposit
+      //         setLoading={setLoading}
+      //         setActivePage={setActivePage}
+      //       />
+      //     </Suspense>
+      //   );
 
-      case "recent-payments":
-        return (
-          <Suspense fallback={<div>Loading...</div>}>
-            <RecentTransaction setLoading={setLoading} />
-          </Suspense>
-        );
+      // case "recent-payments":
+      //   return (
+      //     <Suspense fallback={<div>Loading...</div>}>
+      //       <RecentTransaction setLoading={setLoading} />
+      //     </Suspense>
+      //   );
     }
   };
 

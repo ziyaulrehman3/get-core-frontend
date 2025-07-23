@@ -19,11 +19,15 @@ function FileUpload({ label, file, onFileChange, onUpload }) {
 
         <label
           htmlFor={label.replace(/\s+/g, "-").toLowerCase()}
-          className="cursor-pointer flex flex-col items-center justify-center text-gray-600 text-md font-semibold"
+          className={`cursor-pointer flex flex-col items-center justify-center ${
+            file ? "text-green-600" : "text-gray-600"
+          } text-md font-semibold`}
         >
           <IoCloudUploadOutline className="text-3xl" />
 
-          <span className="text-[#4F7396]">Upload {label}</span>
+          <span className={`${file ? "text-green-600" : "text-[#4F7396]"} `}>
+            Upload {label}
+          </span>
         </label>
 
         {file && (

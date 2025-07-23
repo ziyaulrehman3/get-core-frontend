@@ -22,6 +22,8 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
   const [chartData, setChartData] = useState({
     singleActiveLoan: 0,
     emiActiveLoan: 0,
+    totalSingleLoans: 0,
+    totalEmiLoans: 0,
   });
 
   const [customerList, setCustomerList] = useState([]);
@@ -44,18 +46,16 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
       setLoading(true);
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get(
-          "https://getcore-backend.onrender.com/Dashboard",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("http://localhost:3000/Dashboard", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setChartData(response.data.data);
+        console.log(response.data.data);
 
         const response2 = await axios.get(
-          "https://getcore-backend.onrender.com/custumerList",
+          "http://localhost:3000/custumerList",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
         setCustomerList(response2.data.data);
 
         const response3 = await axios.get(
-          "https://getcore-backend.onrender.com/RecentTransaction",
+          "http://localhost:3000/RecentTransaction",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -114,28 +114,60 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
         </h1>
         <h1 className="text-7xl ">{customerList.length}</h1>
       </div>
+
       <div className="rounded-xl font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
         <h1 className="text-xm mx-auto lg:text-xl text-center">
-          {"Active EMI Loan:"}
+          {"EMI Loans:"}
         </h1>
-        <h1 className="text-7xl ">{chartData.emiActiveLoan}</h1>
-      </div>
-      <div className="rounded-xl mx-auto font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
-        <h1 className="text-xm lg:text-xl text-center">
-          {"Active Single Loan:"}
+        <h1 className="text-7xl ">
+          {chartData.emiActiveLoan}/{chartData.totalEmiLoans}
         </h1>
-        <h1 className="text-7xl ">{chartData.singleActiveLoan}</h1>
       </div>
 
-      <div className=" col-span-3 row-span-2 flex justify-center items-center">
+      <div className="rounded-xl font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
+        <h1 className="text-xm lg:text-xl text-center">{"Single Loans:"}</h1>
+        <h1 className="text-xl ">
+          {chartData.singleActiveLoan}/{chartData.totalSingleLoans}
+        </h1>
+      </div>
+
+      <div className="col-span-1 gap-2 rounded-xl bg-blue-300 flex flex-col justify-center items-center font-bold">
+        <h1 className="text-xl">Today's Collection</h1>
+        <h1 className="text-5xl">₹ {todayCollection}</h1>
+      </div>
+
+      <div className="rounded-xl overflow-hidden font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
+        <h1 className="text-xm lg:text-xl text-center">
+          {"Due EMI Loans Amount:"}
+        </h1>
+        <h1 className="text-xl ">{chartData.emiTotalDueAmount}</h1>
+      </div>
+
+      <div className="rounded-xl overflow-hidden font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
+        <h1 className="text-xm lg:text-xl text-center">
+          {"Due Single Loans Amount:"}
+        </h1>
+        <h1 className="text-xl ">{chartData.emiTotalDueAmount}</h1>
+      </div>
+
+      <div className="rounded-xl mx-auto font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
+        <h1 className="text-xm lg:text-xl text-center">
+          {"Overall Distribution (EMI):"}
+        </h1>
+        <h1 className="text-xl ">{chartData.emiDistAmount}</h1>
+      </div>
+
+      <div className="rounded-xl overflow-hidden font-semibold bg-gradient-to-br w-full from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
+        <h1 className="text-xm lg:text-xl text-center">
+          {"Overall Distribution (Single):"}
+        </h1>
+        <h1 className="text-xl ">{chartData.singleDistAmount}</h1>
+      </div>
+
+      <div className="col-start-5 row-start-1 col-span-2 row-span-2 flex justify-center items-center">
         <div className="h-full aspect-square">
           {chartData && <Doughnut data={data} />}
         </div>
-      </div>
-
-      <div className="col-span-3 gap-2 rounded-xl bg-blue-300 flex flex-col justify-center items-center font-bold">
-        <h1 className="text-xl">Today's Collection</h1>
-        <h1 className="text-5xl">₹ {todayCollection}</h1>
       </div>
 
       <div className=" col-span-3 row-span-2 md:row-start-3 border-[1px] border-gray-200">

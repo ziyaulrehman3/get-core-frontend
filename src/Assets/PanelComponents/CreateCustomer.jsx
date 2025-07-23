@@ -197,27 +197,27 @@ function CreateCustomer({ setLoading }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-full mx-auto mt-5 px-5">
           <FileUpload
             label="Photo"
-            file={files.doc1}
+            file={files.photoUrl}
             onFileChange={handleFileChange("photoUrl")}
           />
           <FileUpload
             label="PAN"
-            file={files.doc2}
+            file={files.panUrl}
             onFileChange={handleFileChange("panUrl")}
           />
           <FileUpload
             label="Aadhar"
-            file={files.doc3}
+            file={files.aadharUrl}
             onFileChange={handleFileChange("aadharUrl")}
           />
           <FileUpload
             label="Bank Passbook"
-            file={files.doc4}
+            file={files.bankUrl}
             onFileChange={handleFileChange("bankUrl")}
           />
           <FileUpload
             label="Other Docs"
-            file={files.doc4}
+            file={files.otherUrl}
             onFileChange={handleFileChange("otherUrl")}
           />
         </div>

@@ -39,14 +39,11 @@ export default function LoanDeposit({ setLoading }) {
       const token = localStorage.getItem("token");
 
       try {
-        const response = await axios.get(
-          "https://getcore-backend.onrender.com/custumerList",
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
+        const response = await axios.get("http://localhost:3000/custumerList", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
 
         console.log(response.data);
         setList(response.data.data);
@@ -63,8 +60,7 @@ export default function LoanDeposit({ setLoading }) {
   const fetchCustomer = async (customerId) => {
     setLoading(true);
     const token = localStorage.getItem("token");
-    const url =
-      "https://getcore-backend.onrender.com/viewCustumer/" + formData.cusId;
+    const url = "http://localhost:3000/viewCustumer/" + formData.cusId;
 
     try {
       const response = await axios.get(url, {
@@ -91,7 +87,7 @@ export default function LoanDeposit({ setLoading }) {
   async function depositLoan() {
     console.log(formData);
     setLoading(true);
-    const url = `https://getcore-backend.onrender.com/${
+    const url = `http://localhost:3000/${
       type === "single" ? "depositSingleLoan" : "depositEmiLoan"
     }/${formData.loanId}`;
 
@@ -197,18 +193,29 @@ export default function LoanDeposit({ setLoading }) {
         </div>
 
         <Input
+          name="emiNo"
+          placeholder="EMI No"
+          type="text"
+          value={formData.emiNo}
+          onChange={handleChange}
+          className={`${type == "single" ? "hidden" : ""}`}
+        />
+
+        <Input
           name="credit"
           placeholder="Amount"
           type="text"
           value={formData.credit}
           onChange={handleChange}
         />
+
         <Input
           name="desc"
           placeholder="Description"
           type="text"
           value={formData.desc}
           onChange={handleChange}
+          className={`${type == "single" ? "" : "hidden"}`}
         />
       </div>
 
@@ -216,7 +223,7 @@ export default function LoanDeposit({ setLoading }) {
         onClick={depositLoan}
         className="min-h-12 w-full cursor-pointer w-full rounded-lg focus:outline-none bg-gradient-to-br from-[#A480F0] to-[#35A8E7] text-white text-lg font-medium hover:brightness-110"
       >
-        Create Loan
+        Deposit Payment
       </button>
     </div>
   );
