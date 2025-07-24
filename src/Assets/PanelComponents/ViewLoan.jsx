@@ -19,11 +19,14 @@ export default function ViewLoan({ setLoading, setActivePage }) {
       setLoading(true);
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3000/LoanList", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `https://getcore-backend.onrender.com/LoanList`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         console.log(response.data.data);
         setOriginalList(response.data.data);
         setList(response.data.data);
@@ -79,7 +82,7 @@ export default function ViewLoan({ setLoading, setActivePage }) {
           setStatus={setStatus}
         />
 
-        <div className="h-full overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+        <div className="h-full pt-2 md:pt-4 pb-12 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
           {list?.map((item, index) => {
             return (
               <LoanSlice

@@ -7,7 +7,7 @@ export default function Passbook({ data }) {
       {/* Header Row */}
 
       {type == "single" ? (
-        <div className="grid grid-cols-5 font-bold bg-gray-200 p-2 rounded  text-xs md:text-base">
+        <div className="grid grid-cols-5 font-bold bg-gray-200 p-2 rounded  text-[7px] md:text-base">
           <p>Date</p>
           <p>Description</p>
           <p>Credit</p>
@@ -15,7 +15,7 @@ export default function Passbook({ data }) {
           <p>Balance</p>
         </div>
       ) : (
-        <div className="grid grid-cols-9 font-bold bg-gray-200 p-2 rounded  text-xs md:text-sm text-center">
+        <div className="grid grid-cols-9 font-bold bg-gray-200 p-2 rounded  text-[7px] md:text-sm text-center">
           <p>Due Date</p>
           <p>Installment</p>
           <p>Inst. Amount</p>
@@ -34,7 +34,7 @@ export default function Passbook({ data }) {
         ? data?.map((entry, index) => (
             <div
               key={index}
-              className="grid grid-cols-5 p-2 border-b text-xs md:text-base"
+              className="grid grid-cols-5 p-2 border-b text-[7px] md:text-base"
             >
               <p>{new Date(entry.date).toLocaleDateString("en-GB")}</p>
               <p>{entry.desc}</p>
@@ -46,19 +46,21 @@ export default function Passbook({ data }) {
         : data?.map((entry, index) => (
             <div
               key={index}
-              className="grid grid-cols-9 p-2 border-b text-xs md:text-base text-center"
+              className="grid grid-cols-9 p-2 border-b text-[7px] md:text-base text-center"
             >
               <p>{new Date(entry.emiDate).toLocaleDateString("en-GB")}</p>
               <p>{entry.emiNo}</p>
-              <p className="text-green-600">₹{entry.emiAmount}</p>
-              <p className="text-red-600">₹{entry.principal}</p>
-              <p className="font-medium">₹{entry.interest}</p>
-              <p className="font-medium">₹{entry.paidAmount}</p>
+              <p className="text-green-600">₹{entry.emiAmount.toFixed(2)}</p>
+              <p className="text-red-600">₹{entry.principal.toFixed(2)}</p>
+              <p className="font-medium">₹{entry.interest.toFixed(2)}</p>
+              <p className="font-medium">₹{entry.paidAmount.toFixed(2)}</p>
               <p className="font-medium">
                 {entry.paidDate &&
                   new Date(entry?.paidDate)?.toLocaleDateString("en-GB")}
               </p>
-              <p className="font-medium">₹{entry.remainingPrincipal}</p>
+              <p className="font-medium">
+                ₹{entry.remainingPrincipal.toFixed(2)}
+              </p>
               <p className="font-medium">₹{entry.status}</p>
             </div>
           ))}

@@ -31,11 +31,14 @@ export default function CreateLoan({ setLoading }) {
       const token = localStorage.getItem("token");
 
       try {
-        const response = await axios.get("http://localhost:3000/custumerList", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        const response = await axios.get(
+          `https://getcore-backend.onrender.com/custumerList`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
 
         console.log(response.data);
         setList(response.data.data);
@@ -65,7 +68,7 @@ export default function CreateLoan({ setLoading }) {
   }, [type]);
 
   async function ApiCall() {
-    const url = `http://localhost:3000/${
+    const url = `https://getcore-backend.onrender.com/${
       type == "single" ? "createSingleLoan" : "createEmiLoan"
     }/${formData.cusId}`;
 

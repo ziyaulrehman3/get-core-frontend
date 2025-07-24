@@ -23,7 +23,7 @@ export default function LoanSlice({ item, index, setLoanDetailsFlag }) {
         <p>
           {item.loanType === "single"
             ? "Balance:" + item.balance
-            : "Due:" + item.dueAmount}
+            : "Due:" + item?.dueAmount?.toFixed(2)}
         </p>
       </div>{" "}
       <div className="md:col-span-2 px-2">

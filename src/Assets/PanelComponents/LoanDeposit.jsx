@@ -39,11 +39,14 @@ export default function LoanDeposit({ setLoading }) {
       const token = localStorage.getItem("token");
 
       try {
-        const response = await axios.get("http://localhost:3000/custumerList", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        const response = await axios.get(
+          `https://getcore-backend.onrender.com/custumerList`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
 
         console.log(response.data);
         setList(response.data.data);
@@ -60,7 +63,8 @@ export default function LoanDeposit({ setLoading }) {
   const fetchCustomer = async (customerId) => {
     setLoading(true);
     const token = localStorage.getItem("token");
-    const url = "http://localhost:3000/viewCustumer/" + formData.cusId;
+    const url =
+      `https://getcore-backend.onrender.com/viewCustumer/` + formData.cusId;
 
     try {
       const response = await axios.get(url, {
@@ -87,7 +91,7 @@ export default function LoanDeposit({ setLoading }) {
   async function depositLoan() {
     console.log(formData);
     setLoading(true);
-    const url = `http://localhost:3000/${
+    const url = `https://getcore-backend.onrender.com/${
       type === "single" ? "depositSingleLoan" : "depositEmiLoan"
     }/${formData.loanId}`;
 

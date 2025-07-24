@@ -7,6 +7,7 @@ import { IoSwapVerticalOutline } from "react-icons/io5";
 import { MdOutlineAutoDelete } from "react-icons/md";
 import { LuCircleEqual } from "react-icons/lu";
 import Input from "../Input";
+import { IoCloudDownloadOutline } from "react-icons/io5";
 
 import Passbook from "./Passbook";
 export default function LoanDetails({
@@ -24,7 +25,11 @@ export default function LoanDetails({
         const token = localStorage.getItem("token");
         const loanId = localStorage.getItem("loanId");
         const type = localStorage.getItem("loanType");
-        const url = "http://localhost:3000/LoanDetails/" + loanId + "/" + type;
+        const url =
+          `https://getcore-backend.onrender.com/LoanDetails/` +
+          loanId +
+          "/" +
+          type;
 
         const response = await axios.get(url, {
           headers: {
@@ -53,7 +58,7 @@ export default function LoanDetails({
       const token = localStorage.getItem("token");
 
       try {
-        const url = `http://localhost:3000/${
+        const url = `https://getcore-backend.onrender.com/${
           type == "single" ? "deleteSingleLoan" : "deleteEmiLoan"
         }/${id}`;
 
@@ -86,7 +91,7 @@ export default function LoanDetails({
       const type = localStorage.getItem("loanType");
 
       try {
-        const url = `http://localhost:3000/${
+        const url = `https://getcore-backend.onrender.com/${
           type == "single" ? "settleSingleLoan" : "settleEmiLoan"
         }/${id}`;
 
@@ -138,7 +143,7 @@ export default function LoanDetails({
   async function depositLoan() {
     console.log(formData);
     setLoading(true);
-    const url = `http://localhost:3000/${
+    const url = `https://getcore-backend.onrender.com/${
       type === "single" ? "depositSingleLoan" : "depositEmiLoan"
     }/${data._id}`;
 
@@ -152,9 +157,12 @@ export default function LoanDetails({
       });
 
       setLoading(false);
+      resetForm();
       alert("Amount Deposit Success");
     } catch (err) {
+      resetForm();
       alert(err.response.data.message);
+
       console.log(err);
     }
 
@@ -266,13 +274,13 @@ export default function LoanDetails({
             ))}
           </div>
           <div
-            className={`w-full flex flex-row justify-around ${
+            className={`w-full flex flex-row justify-around gap-2 px-2 ${
               data.loanStatus ? "block" : "hidden"
             }`}
           >
             <button
               onClick={() => DeleteLoan(data?._id)}
-              className="w-[45%] mx-auto h-10 text-white text-md rounded-xl bg-red-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-red-600 hover:brightness-110 cursor-pointer"
+              className="w-[45%] mx-auto h-10 text-white text-xs lg:text-md px-2 rounded-xl bg-red-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-red-600 hover:brightness-110 cursor-pointer"
             >
               <span>
                 <MdOutlineAutoDelete />
@@ -280,9 +288,16 @@ export default function LoanDetails({
               <span>Delete this Loan</span>
             </button>
 
+            <button className="w-[45%] mx-auto h-10 text-white px-2 text-xs lg:text-md rounded-xl bg-blue-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-blue-600 hover:brightness-110 cursor-pointer">
+              <span>
+                <IoCloudDownloadOutline />
+              </span>
+              <span>Download PDF</span>
+            </button>
+
             <button
               onClick={() => setDepositFlag(true)}
-              className="w-[45%] mx-auto h-10 text-white text-md rounded-xl bg-green-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-green-600 hover:brightness-110 cursor-pointer"
+              className="w-[45%] mx-auto h-10 text-white text-xs px-2 lg:text-md rounded-xl bg-green-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-green-600 hover:brightness-110 cursor-pointer"
             >
               <span>
                 <LuCircleEqual />
@@ -323,7 +338,7 @@ export default function LoanDetails({
                       ].includes(item)
                   ),
                 ].map((item) => (
-                  <label className="font-medium text-md grid grid-cols-2">
+                  <label className="font-medium text-[10px] md:text-base grid grid-cols-2">
                     <span className="text-gray-600">{itemsList?.[item]} </span>
                     <span>
                       <span>: </span>
