@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { IoLogOut } from "react-icons/io5";
+import { FaListUl } from "react-icons/fa";
+
 import {
   FaHome,
   FaUser,
@@ -9,6 +12,8 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+
+import { useNavigate } from "react-router-dom";
 
 const SideBar = ({ activePage, setActivePage }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -44,8 +49,9 @@ const SideBar = ({ activePage, setActivePage }) => {
     {
       id: "list-loans",
       label: "Loans List",
-      icon: <FaFileInvoiceDollar size={20} />,
+      icon: <FaListUl size={20} />,
     },
+
     // {
     //   id: "payment-deposit",
     //   label: "Payment Deposit",
@@ -57,6 +63,8 @@ const SideBar = ({ activePage, setActivePage }) => {
     //   icon: <FaHistory size={20} />,
     // },
   ];
+
+  const navigation = useNavigate();
 
   return (
     <>
@@ -99,6 +107,22 @@ const SideBar = ({ activePage, setActivePage }) => {
                 </button>
               </li>
             ))}
+
+            <li key="Logout btn" className="mb-1 ml-4 mr-8">
+              <button
+                onClick={() => {
+                  navigation("/Login");
+                  localStorage.setItem("token", "");
+                  // Close sidebar on mobile after navigation
+                }}
+                className={`btn-primary hover:bg-gray-300`}
+              >
+                <span className={"text-black mr-4 text-2xl"}>
+                  {<IoLogOut />}
+                </span>
+                <span className={"text-black"}>Logout</span>
+              </button>
+            </li>
           </ul>
         </nav>
       </div>
