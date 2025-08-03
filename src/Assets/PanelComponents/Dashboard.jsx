@@ -145,28 +145,28 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
 
       <div className="rounded-xl p-2 mx-auto aspect-square font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
         <h1 className="text-xs mx-auto lg:text-lg text-center">
-          {"Due EMI Loans Amount:"}
+          {"Total Outstanding (EMI):"}
         </h1>
         <h1 className="text-lg lg:text-4xl ">{chartData?.emiTotalDueAmount}</h1>
       </div>
 
       <div className="rounded-xl p-2 mx-auto aspect-square font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
         <h1 className="text-xs mx-auto lg:text-lg text-center">
-          {"Due Single Loans Amount:"}
+          {"Total Outstanding (Single):"}
         </h1>
         <h1 className="text-lg lg:text-4xl">{chartData?.emiTotalDueAmount}</h1>
       </div>
 
       <div className="rounded-xl p-2 mx-auto aspect-square font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
         <h1 className="text-xs mx-auto lg:text-lg text-center">
-          {"Overall Distribution (EMI):"}
+          {"Total Disworsment (EMI):"}
         </h1>
         <h1 className="text-lg lg:text-4xl">{chartData?.emiDistAmount}</h1>
       </div>
 
       <div className="rounded-xl p-2 mx-auto aspect-square font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
         <h1 className="text-xs mx-auto lg:text-lg text-center">
-          {"Overall Distribution (Single):"}
+          {"Total Disworsment (Single):"}
         </h1>
         <h1 className="text-lg lg:text-4xl">{chartData?.singleDistAmount}</h1>
       </div>

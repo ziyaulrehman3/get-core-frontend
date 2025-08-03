@@ -9,6 +9,7 @@ import CreateLoan from "./PanelComponents/CreateLoan";
 
 const ViewLoan = lazy(() => import("./PanelComponents/ViewLoan"));
 const LoanDeposit = lazy(() => import("./PanelComponents/LoanDeposit"));
+const LoansList = lazy(() => import("./PanelComponents/LoansList"));
 const RecentTransaction = lazy(() =>
   import("./PanelComponents/RecentTransaction")
 );
@@ -43,6 +44,13 @@ export default function Panel() {
         return (
           <Suspense fallback={<div>Loading....</div>}>
             <ViewLoan setLoading={setLoading} setActivePage={setActivePage} />
+          </Suspense>
+        );
+
+      case "list-loans":
+        return (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LoansList setLoading={setLoading} setActivePage={setActivePage} />
           </Suspense>
         );
 

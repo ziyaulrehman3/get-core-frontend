@@ -41,6 +41,11 @@ const SideBar = ({ activePage, setActivePage }) => {
       label: "View Loan",
       icon: <FaFileInvoiceDollar size={20} />,
     },
+    {
+      id: "list-loans",
+      label: "Loans List",
+      icon: <FaFileInvoiceDollar size={20} />,
+    },
     // {
     //   id: "payment-deposit",
     //   label: "Payment Deposit",
