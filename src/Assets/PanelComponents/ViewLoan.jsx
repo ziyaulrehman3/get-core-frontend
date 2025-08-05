@@ -12,10 +12,12 @@ export default function ViewLoan({ setLoading, setActivePage }) {
   const [originalList, setOriginalList] = useState([]);
   const [list, setList] = useState(originalList);
   const [loanDetailsFlag, setLoanDetailsFlag] = useState(false);
+  const [search, setSearch] = useState("");
+  const [searchDetails, setSearchDetails] = useState({});
 
   useEffect(() => {
     async function CallApi() {
-      console.log("Calling Ziya");
+      // console.log("Calling Ziya");
       setLoading(true);
       try {
         const token = localStorage.getItem("token");
@@ -27,7 +29,7 @@ export default function ViewLoan({ setLoading, setActivePage }) {
             },
           }
         );
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setOriginalList(response.data.data);
         setList(response.data.data);
       } catch (err) {
@@ -60,6 +62,15 @@ export default function ViewLoan({ setLoading, setActivePage }) {
     setList(tempList);
   }, [type, status]);
 
+  useEffect(() => {
+    console.log(search);
+    const tempList = list.filter((item) => {
+      return item._id == search;
+    });
+    console.log(tempList);
+    setSearchDetails(tempList[0]);
+  }, [search]);
+
   return (
     <div
       className={`w-full md:w-[80%] px-[5%] py-5 flex flex-col gap-4 overflow-auto`}
@@ -80,19 +91,34 @@ export default function ViewLoan({ setLoading, setActivePage }) {
           setType={setType}
           status={status}
           setStatus={setStatus}
+          setSearch={setSearch}
+          search={search}
         />
 
         <div className="h-full pt-2 md:pt-4 pb-12 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-          {list?.map((item, index) => {
-            return (
+          {search ? (
+            searchDetails ? (
               <LoanSlice
-                key={item._id}
-                index={index}
-                item={item}
+                key={searchDetails?._id}
+                index={1}
+                item={searchDetails}
                 setLoanDetailsFlag={setLoanDetailsFlag}
               />
-            );
-          })}
+            ) : (
+              ""
+            )
+          ) : (
+            list?.map((item, index) => {
+              return (
+                <LoanSlice
+                  key={item._id}
+                  index={index}
+                  item={item}
+                  setLoanDetailsFlag={setLoanDetailsFlag}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     </div>

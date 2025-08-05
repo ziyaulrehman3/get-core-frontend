@@ -1,13 +1,22 @@
 import { IoSearchOutline } from "react-icons/io5";
 
-export default function Header({ setType, type, status, setStatus }) {
+export default function Header({
+  setType,
+  type,
+  status,
+  setStatus,
+  setSearch,
+  search,
+}) {
   return (
     <div className="w-full flex flex-row justify-around h-12 mb-2">
       <div className="relative w-[60%] border-[1px] border-[#D1DBE8] rounded-xl">
         <IoSearchOutline className="absolute top-3 left-2 text-2xl text-gray-300" />
         <input
           type="text"
-          placeholder="Search by Customer Name, Loan ID or Customer ID"
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          placeholder="Search by Loan ID...."
           className="w-full h-full border-none rounded-xl px-2 pl-9 focus:outline-none bg-white"
         />
       </div>

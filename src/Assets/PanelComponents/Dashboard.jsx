@@ -55,7 +55,7 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
           }
         );
         setChartData(response.data.data);
-        console.log(response);
+        // console.log(response);
 
         const response2 = await axios.get(
           `https://getcore-backend.onrender.com/custumerList`,
@@ -78,7 +78,7 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
 
         setRecentTransaction(response3.data.data);
 
-        console.log(response3);
+        // console.log(response3);
 
         setLoading(false);
       } catch (err) {

@@ -8,6 +8,7 @@ import { MdOutlineAutoDelete } from "react-icons/md";
 import { LuCircleEqual } from "react-icons/lu";
 import Input from "../Input";
 import { IoCloudDownloadOutline } from "react-icons/io5";
+import { EmiPdf, SinglePdf } from "../../PdfComp/pdfGeneration";
 
 import Passbook from "./Passbook";
 export default function LoanDetails({
@@ -288,7 +289,10 @@ export default function LoanDetails({
               <span>Delete this Loan</span>
             </button>
 
-            <button className="w-[45%] mx-auto h-10 text-white px-2 text-xs lg:text-md rounded-xl bg-blue-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-blue-600 hover:brightness-110 cursor-pointer">
+            <button
+              onClick={() => (type == "emi" ? EmiPdf(data) : SinglePdf(data))}
+              className="w-[45%] mx-auto h-10 text-white px-2 text-xs lg:text-md rounded-xl bg-blue-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-blue-600 hover:brightness-110 cursor-pointer"
+            >
               <span>
                 <IoCloudDownloadOutline />
               </span>
