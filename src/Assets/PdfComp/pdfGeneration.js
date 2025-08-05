@@ -166,8 +166,9 @@ export function LoanPdf(data, formData) {
     "Sr. No",
     "Client Name",
     "Loan Id",
-    "Loan Amount",
-    "Due Amount",
+    "Total EMIs",
+    "Paid EMIs",
+    "EMI Amount",
     "Mobile No",
   ];
 
@@ -187,8 +188,9 @@ export function LoanPdf(data, formData) {
         index + 1,
         item.name,
         item._id,
-        item.loanAmount,
-        item.dueAmount,
+        item.totalEmi,
+        item.paidEmis,
+        item.emiAmount,
         item.cusId,
       ];
     }
