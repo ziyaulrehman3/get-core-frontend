@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 
 export default function Comp1() {
   return (
-    <div className="w-full overflow-hidden  relative bg-[#E1EEFF] h-[90vh] lg:h-lvh flex justify-end items-end">
+    <div className="w-full overflow-hidden  relative bg-[#E1EEFF] h-[70vh] lg:h-lvh flex justify-end items-end">
       <div className="w-[50%] aspect-[2/1] overflow-hidden ">
         <div className="w-full aspect-square rounded-full bg-blue-200" />
       </div>
-      <div className="absolute font-ibm top-0 left-0 h-full w-full flex flex-col lg:flex-row items-center justify-between px-[10%]">
+      <div className="absolute font-ibm top-0 left-0 lg:h-full w-full flex flex-col lg:flex-row items-center justify-between px-[10%]">
         <div className="pt-30 lg:pt-10 w-full lg:w-[60%]">
           <motion.h1
             initial={{ opacity: 0, x: -40 }}
