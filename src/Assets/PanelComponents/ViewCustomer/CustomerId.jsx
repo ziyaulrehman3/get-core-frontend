@@ -19,7 +19,7 @@ export default function CustomerId({ fetchCustomer, setLoading }) {
           }
         );
 
-        console.log(response.data);
+        // console.log(response.data);
         setList(response.data.data);
       } catch (err) {
         console.log(err);
@@ -32,7 +32,7 @@ export default function CustomerId({ fetchCustomer, setLoading }) {
   }, []);
 
   useEffect(() => {
-    console.log(currentOption);
+    // console.log(currentOption);
   }, [currentOption]);
 
   return (

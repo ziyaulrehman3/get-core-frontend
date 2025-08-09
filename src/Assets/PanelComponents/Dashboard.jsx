@@ -16,7 +16,7 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
   const [loanDetailsFlag, setLoanDetailsFlag] = useState(false);
 
   useEffect(() => {
-    console.log(loanDetailsFlag);
+    // console.log(loanDetailsFlag);
   }, [loanDetailsFlag]);
 
   const [chartData, setChartData] = useState({
@@ -74,7 +74,7 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
             },
           }
         );
-        console.log(response3.data);
+        // console.log(response3.data);
 
         setRecentTransaction(response3.data.data);
 
@@ -92,7 +92,7 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
   useEffect(() => {
     if (recentTransaction) {
       const todayDate = new Date().toLocaleDateString("en-US");
-      console.log("Ziya uo");
+      // console.log("Ziya uo");
 
       const total = recentTransaction.reduce((sum, item) => {
         return new Date(item["transaction"].date).toLocaleDateString("en-US") ==

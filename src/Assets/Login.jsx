@@ -33,7 +33,7 @@ export default function Login() {
 
   const onSubmit = async () => {
     const info = credentail;
-    console.log("Calling");
+    // console.log("Calling");
 
     setCredentail({
       username: "",

@@ -2,7 +2,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
 export function EmiPdf(data) {
-  console.log(data);
+  // console.log(data);
   const doc = new jsPDF({
     orientation: "landscape",
     unit: "mm",
@@ -71,7 +71,7 @@ export function EmiPdf(data) {
 }
 
 export function SinglePdf(data) {
-  console.log(data);
+  // console.log(data);
   const doc = new jsPDF({
     orientation: "landscape",
     unit: "mm",

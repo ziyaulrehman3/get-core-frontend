@@ -50,7 +50,7 @@ export default function ViewCustomer({ setLoading }) {
     const url =
       "https://getcore-backend.onrender.com/viewCustumer/" + customerId;
 
-    console.log("Fetching customerId:", customerId);
+    // console.log("Fetching customerId:", customerId);
 
     try {
       const response = await axios.get(url, {
@@ -82,11 +82,11 @@ export default function ViewCustomer({ setLoading }) {
         email: newData.email ?? "",
       };
 
-      console.log("Setting customerInfo:", {
-        ...defaultCustomerFields,
-        ...newFiles,
-        ...customerData,
-      });
+      // console.log("Setting customerInfo:", {
+      //   ...defaultCustomerFields,
+      //   ...newFiles,
+      //   ...customerData,
+      // });
       setCustomerInfo({
         ...defaultCustomerFields,
         ...newFiles,
@@ -128,14 +128,14 @@ export default function ViewCustomer({ setLoading }) {
       for (let pair of formData.entries()) {
         console.log(pair[0] + ": " + pair[1]);
       }
-      console.log("Submitting for customerId:", customerId);
+      // console.log("Submitting for customerId:", customerId);
       await axios.post(url + customerId, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       setLoading(false);
-      console.log(`Customer info Updated Successfully`);
+      // console.log(`Customer info Updated Successfully`);
       alert("Customer info updated successfully!");
       setChangedField(null); // Reset after successful update
     } catch (err) {

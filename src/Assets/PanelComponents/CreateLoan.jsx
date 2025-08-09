@@ -40,7 +40,7 @@ export default function CreateLoan({ setLoading }) {
           }
         );
 
-        console.log(response.data);
+        // console.log(response.data);
         setList(response.data.data);
       } catch (err) {
         console.log(err);
@@ -87,7 +87,7 @@ export default function CreateLoan({ setLoading }) {
       );
 
       alert("Loan Added Succesfully");
-      console.log(response.data);
+      // console.log(response.data);
     } catch (err) {
       alert("Loan Not Add Succesfully");
       console.log(err);

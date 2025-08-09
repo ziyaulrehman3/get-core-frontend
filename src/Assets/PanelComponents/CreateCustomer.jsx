@@ -97,7 +97,7 @@ function CreateCustomer({ setLoading }) {
 
       alert("Customer create Succesfully");
 
-      console.log(response);
+      // console.log(response);
     } catch (err) {
       alert("Some Error Occure");
 

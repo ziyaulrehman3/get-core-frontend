@@ -14,7 +14,7 @@ export default function LoansList() {
   }
 
   async function ApiCall() {
-    console.log(formData);
+    // console.log(formData);
     try {
       const response = await axios.post(
         "https://getcore-backend.onrender.com/loansListPdf",

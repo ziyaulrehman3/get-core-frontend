@@ -63,11 +63,11 @@ export default function ViewLoan({ setLoading, setActivePage }) {
   }, [type, status]);
 
   useEffect(() => {
-    console.log(search);
+    // console.log(search);
     const tempList = list.filter((item) => {
       return item._id == search;
     });
-    console.log(tempList);
+    // console.log(tempList);
     setSearchDetails(tempList[0]);
   }, [search]);
 

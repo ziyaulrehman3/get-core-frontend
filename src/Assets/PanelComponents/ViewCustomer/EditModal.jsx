@@ -65,7 +65,7 @@ export default function EditModal({
               ].includes(field)
             ) {
               const file = e.target.files[0];
-              console.log("Selected file:", file);
+              // console.log("Selected file:", file);
               setInput(file);
               // store it in state if needed
             } else {

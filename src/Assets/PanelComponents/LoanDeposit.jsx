@@ -48,7 +48,7 @@ export default function LoanDeposit({ setLoading }) {
           }
         );
 
-        console.log(response.data);
+        // console.log(response.data);
         setList(response.data.data);
       } catch (err) {
         console.log(err);
@@ -73,7 +73,7 @@ export default function LoanDeposit({ setLoading }) {
         },
       });
 
-      console.log(response.data.data);
+      // console.log(response.data.data);
 
       setCustomerInfo(response.data.data);
       setLoading(false);
@@ -89,7 +89,7 @@ export default function LoanDeposit({ setLoading }) {
   }, [formData.cusId]);
 
   async function depositLoan() {
-    console.log(formData);
+    // console.log(formData);
     setLoading(true);
     const url = `https://getcore-backend.onrender.com/${
       type === "single" ? "depositSingleLoan" : "depositEmiLoan"
