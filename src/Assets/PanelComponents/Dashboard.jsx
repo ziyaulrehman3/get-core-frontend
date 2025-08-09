@@ -55,7 +55,6 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
           }
         );
         setChartData(response.data.data);
-        // console.log(response);
 
         const response2 = await axios.get(
           `https://getcore-backend.onrender.com/custumerList`,
@@ -75,6 +74,7 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
             },
           }
         );
+        console.log(response3.data);
 
         setRecentTransaction(response3.data.data);
 
@@ -91,11 +91,11 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
 
   useEffect(() => {
     if (recentTransaction) {
-      const todayDate = new Date().toLocaleDateString("en-GB");
+      const todayDate = new Date().toLocaleDateString("en-US");
       console.log("Ziya uo");
 
       const total = recentTransaction.reduce((sum, item) => {
-        return new Date(item["transaction"].date).toLocaleDateString("en-GB") ==
+        return new Date(item["transaction"].date).toLocaleDateString("en-US") ==
           todayDate
           ? sum + Number(item["transaction"].credit)
           : sum;
@@ -147,14 +147,18 @@ export default function Dashboard({ className, setLoading, setActivePage }) {
         <h1 className="text-xs mx-auto lg:text-lg text-center">
           {"Total Outstanding (EMI):"}
         </h1>
-        <h1 className="text-lg lg:text-4xl ">{chartData?.emiTotalDueAmount}</h1>
+        <h1 className="text-lg lg:text-4xl ">
+          {chartData?.emiTotalDueAmount?.toFixed(2)}
+        </h1>
       </div>
 
       <div className="rounded-xl p-2 mx-auto aspect-square font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">
         <h1 className="text-xs mx-auto lg:text-lg text-center">
           {"Total Outstanding (Single):"}
         </h1>
-        <h1 className="text-lg lg:text-4xl">{chartData?.emiTotalDueAmount}</h1>
+        <h1 className="text-lg lg:text-4xl">
+          {chartData?.singleTotalDueAmount?.toFixed(2)}
+        </h1>
       </div>
 
       <div className="rounded-xl p-2 mx-auto aspect-square font-semibold bg-gradient-to-br from-blue-300 to-pink-300 flex flex-col justify-around items-center  text-white">

@@ -274,14 +274,12 @@ export default function LoanDetails({
               </div>
             ))}
           </div>
-          <div
-            className={`w-full flex flex-row justify-around gap-2 px-2 ${
-              data.loanStatus ? "block" : "hidden"
-            }`}
-          >
+          <div className={`w-full flex flex-row justify-around gap-2 px-2 `}>
             <button
               onClick={() => DeleteLoan(data?._id)}
-              className="w-[45%] mx-auto h-10 text-white text-xs lg:text-md px-2 rounded-xl bg-red-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-red-600 hover:brightness-110 cursor-pointer"
+              className={`w-[45%] mx-auto h-10 text-white text-xs lg:text-md px-2 rounded-xl bg-red-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-red-600 hover:brightness-110 cursor-pointer ${
+                data.loanStatus ? "block" : "hidden"
+              }`}
             >
               <span>
                 <MdOutlineAutoDelete />
@@ -301,7 +299,9 @@ export default function LoanDetails({
 
             <button
               onClick={() => setDepositFlag(true)}
-              className="w-[45%] mx-auto h-10 text-white text-xs px-2 lg:text-md rounded-xl bg-green-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-green-600 hover:brightness-110 cursor-pointer"
+              className={`w-[45%] mx-auto h-10 text-white text-xs px-2 lg:text-md rounded-xl bg-green-600 flex flex-row gap-2 justify-center items-center font-medium border-[2px] border-green-600 hover:brightness-110 cursor-pointer ${
+                data.loanStatus ? "block" : "hidden"
+              }`}
             >
               <span>
                 <LuCircleEqual />

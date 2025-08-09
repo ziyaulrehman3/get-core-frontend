@@ -29,7 +29,7 @@ export default function LoansList() {
   }
 
   return (
-    <div className="w-full h-lvh flex flex-col items-center gap-4">
+    <div className="w-full  lg:w-[80%] h-lvh flex flex-col items-center gap-4">
       <h1 className="text-xl md:text-2xl font-bold text-center">Loans List</h1>
       <div className="flex flex-col lg:flex-row gap-8 justify-center">
         <div className="flex flex-col gap-2">

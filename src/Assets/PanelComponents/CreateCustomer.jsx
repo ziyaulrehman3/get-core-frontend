@@ -95,8 +95,12 @@ function CreateCustomer({ setLoading }) {
         otherUrl: null,
       });
 
+      alert("Customer create Succesfully");
+
       console.log(response);
     } catch (err) {
+      alert("Some Error Occure");
+
       console.log(err);
     }
 

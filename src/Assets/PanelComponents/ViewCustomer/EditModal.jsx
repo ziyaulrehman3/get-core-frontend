@@ -22,7 +22,7 @@ export default function EditModal({
       onClick={onClose}
     >
       <div
-        className="bg-white p-6 rounded-lg shadow-lg h-[100px] lg:h-[300px] w-[200px] lg:w-[600px]"
+        className="bg-white p-6 rounded-lg shadow-lg h-[350px] w-[80%] lg:w-[600px]"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-xl font-semibold mb-2">CustomerId</h2>
